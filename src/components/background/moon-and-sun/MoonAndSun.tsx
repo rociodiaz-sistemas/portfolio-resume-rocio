@@ -38,14 +38,39 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({
 }) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [moonPhase, setMoonPhase] = useState<string | null>(null);
+  const [userHemisphere, setUserHemisphere] = useState<Hemisphere | undefined>(
+    undefined
+  );
+  useEffect(() => {
+    const getUserHemisphere = async () => {
+      try {
+        const response = await fetch("https://geojs.io/api/ip/"); // GeoJS API endpoint
+        const data = await response.json();
+        const latitude = parseFloat(data.latitude);
+
+        // Determine hemisphere based on latitude
+        const hemisphere =
+          latitude >= 0 ? Hemisphere.NORTHERN : Hemisphere.SOUTHERN;
+        setUserHemisphere(hemisphere);
+      } catch (error) {
+        console.error("Failed to fetch user location:", error);
+        // Default to southern hemisphere in case of an error
+        setUserHemisphere(Hemisphere.SOUTHERN);
+      }
+    };
+
+    getUserHemisphere();
+  }, []);
 
   useEffect(() => {
-    const date = new Date();
-    const phase = Moon.lunarPhase(date, {
-      hemisphere: Hemisphere.SOUTHERN, // Adjust hemisphere as needed
-    });
-    setMoonPhase(phase);
-  }, []);
+    if (userHemisphere) {
+      const date = new Date();
+      const phase = Moon.lunarPhase(date, {
+        hemisphere: userHemisphere,
+      });
+      setMoonPhase(phase);
+    }
+  }, [userHemisphere]);
 
   const getTimeInMinutes = (time: Time | Date): number => {
     if ("hours" in time) {
