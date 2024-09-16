@@ -1,0 +1,11 @@
+.night-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Ensure it covers the area */
+  background-repeat: repeat-x; /* Repeat horizontally */
+  background-position: center bottom;
+  pointer-events: none; /* Allow mouse interactions to pass through */
+}

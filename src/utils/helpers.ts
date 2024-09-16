@@ -62,7 +62,7 @@ export const gradients: Record<GradientKey, GradientColor> = {
   Night: "linear-gradient(180deg, #1D1C39 0%, #423062 67%, #553A77 100%)",
   DeepNight: "linear-gradient(180deg, #10204E 43%, #40295E 100%)",
   Midnight:
-    "linear-gradient(180deg, #000000 15%, #10204E 67%, #122B74 88%, #201F87 100%)",
+    "linear-gradient(180deg, #000000 15%, #160927 67%, #000000 88%, #2E2D64 100%)",
   MidnightMidnight:
-    "linear-gradient(180deg, #000000 15%, #091127 67%, #0B173A 88%, #2E2D64 100%)",
+    "linear-gradient(180deg, #000000 15%, #160927 67%, #000000 88%, #2E2D64 100%)",
 };
