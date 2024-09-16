@@ -13,21 +13,21 @@ const PaperAnimation: React.FC = () => {
   return (
     <Box pos="relative" w="100%" h="100%" overflow="hidden">
       <motion.img
-        src={paperImage} // Use your image here
+        src={paperImage}
         alt="Animated Paper"
         style={{
-          position: "absolute", // Position absolutely relative to the parent
+          position: "absolute",
           bottom: 0,
           right: 0,
-          width: "30%", // Adjust size as needed
-          height: "auto", // Maintain aspect ratio
-          zIndex: 10, // Ensure it's on top of other elements
-          transformOrigin: "bottom right", // Ensures the rotation starts from the bottom-right corner
+          width: "30%",
+          height: "auto",
+          zIndex: 10,
+          transformOrigin: "bottom right",
         }}
         variants={paperVariants}
         initial="hidden"
         animate="visible"
-        transition={{ duration: 5, ease: "easeInOut" }} // Adjust duration and easing as necessary
+        transition={{ duration: 5, ease: "easeInOut" }}
       />
     </Box>
   );
