@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 // Define a fixed set of fireflies
-const firefliesData = Array.from({ length: 10 }, (_, index) => ({
+const firefliesData = Array.from({ length: 15 }, (_, index) => ({
   id: index,
   top: Math.random() * 100, // Random position between 0% and 100%
   left: Math.random() * 100, // Random position between 0% and 100%
@@ -21,8 +21,8 @@ const Firefly: React.FC<{ top: number; left: number; opacity: number }> =
         style={{
           zIndex: 11,
           position: "absolute",
-          width: "2px",
-          height: "2px",
+          width: "3px",
+          height: "3px",
           borderRadius: "50%",
           backgroundColor: "yellow",
           boxShadow: "0 0 10px yellow",

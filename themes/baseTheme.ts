@@ -48,6 +48,7 @@ const baseTheme = extendTheme({
   },
   fonts: {
     heading: "'rainyhearts', sans-serif", // For headings
+    heading1: "'pixelround', sans-serif", // For headings1
   },
 });
 

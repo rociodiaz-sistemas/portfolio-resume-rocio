@@ -68,8 +68,15 @@ button:focus-visible {
 }
 
 @font-face {
-  font-family: 'rainyhearts';
-  src: url('/fonts/rainyhearts.ttf') format('truetype');
+  font-family: "rainyhearts";
+  src: url("/fonts/rainyhearts.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pixelround";
+  src: url("/fonts/pixelround.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
