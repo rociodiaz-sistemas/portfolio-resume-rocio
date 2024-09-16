@@ -6,10 +6,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import store from "./store/store.ts";
 import { TimeManagerProvider } from "./store/contexts/TimeManagerContext.tsx";
+import theme from "../themes/theme.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Provider store={store}>
         <TimeManagerProvider>
           <App />

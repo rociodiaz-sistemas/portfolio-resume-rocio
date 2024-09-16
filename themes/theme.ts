@@ -1,19 +1,19 @@
-import baseTheme from './baseTheme';
-import { gifs, gradients } from '../assets/assets';
+import baseTheme from "./baseTheme";
+import { gifs, gradients } from "../src/assets/assets";
 
 export default {
   ...baseTheme,
-  themeName: 'nightTheme',
+  themeName: "nightTheme",
   components: {
     Chat: {
       baseStyle: {
-        bg: 'gradients.NightSky',
+        bg: "gradients.NightSky",
       },
     },
     Header: {
       baseStyle: {
-        backgroundColor: 'rosaBarbie',
-        color: 'white',
+        backgroundColor: "rosaBarbie",
+        color: "white",
       },
     },
   },
@@ -21,48 +21,48 @@ export default {
     // Define message box styles based on user type
 
     subscriber: {
-      color: 'nightWhite',
-      borderColor: 'rosaBarbie',
-      background: 'nightWhite',
+      color: "nightWhite",
+      borderColor: "rosaBarbie",
+      background: "nightWhite",
       backgroundGradient: undefined,
       gifBackground: gifs.general.subscriberGif,
     },
     bits: {
-      color: 'nightWhite',
-      borderColor: 'rosaBarbie',
-      background: 'rositaBb',
+      color: "nightWhite",
+      borderColor: "rosaBarbie",
+      background: "rositaBb",
       backgroundGradient: undefined,
       gifBackground: undefined,
     },
     highlighted: {
-      color: 'nightWhite',
-      borderColor: 'nightWhite',
-      background: 'cuteCosmico',
+      color: "nightWhite",
+      borderColor: "nightWhite",
+      background: "cuteCosmico",
       backgroundGradient: gradients.nightTheme.cuteCosmico,
       gifBackground: undefined,
-      fontColor: 'rgb(237, 30, 129)',
-      highlightedColor: 'rgb(254, 246, 172)',
+      fontColor: "rgb(237, 30, 129)",
+      highlightedColor: "rgb(254, 246, 172)",
     },
     vip: {
-      color: 'nightWhite',
-      borderColor: 'rosaBarbie',
-      background: 'nightWhite',
+      color: "nightWhite",
+      borderColor: "rosaBarbie",
+      background: "nightWhite",
       backgroundGradient: undefined,
       gifBackground: undefined,
     },
     common: {
-      color: 'nightWhite',
-      borderColor: 'rosaBarbie',
-      background: 'rositaBb',
+      color: "nightWhite",
+      borderColor: "rosaBarbie",
+      background: "rositaBb",
       backgroundGradient: undefined,
       gifBackground: undefined,
     },
   },
   gradients: {
     NightSky:
-      'linear-gradient(180deg, #141311 0%, #2D2E38 45.5%, #333850 60%, #553A77 100%)',
+      "linear-gradient(180deg, #141311 0%, #2D2E38 45.5%, #333850 60%, #553A77 100%)",
   },
   operatingSystem: {
-    taskbar: 'rositaBb',
+    taskbar: "rositaBb",
   },
 };

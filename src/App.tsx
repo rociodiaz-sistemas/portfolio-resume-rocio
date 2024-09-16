@@ -1,7 +1,7 @@
 import "./App.css";
 import { useTimeManager } from "./store/contexts/TimeManagerContext";
 import ParallaxClouds from "./components/background/parallax-clouds/ParallaxClouds";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import MoonAndSunAnimation from "./components/background/moon-and-sun/MoonAndSun";
 import {
   MOON_START_TIME,
@@ -13,7 +13,7 @@ import {
 } from "./utils/helpers";
 import NightLayers from "./components/background/night-layers/NightLayers";
 import PaperAnimation from "./components/paper-animation/PaperAnimation";
-import StarField from "./components/background/starfield/Starfield";
+import StarField from "./components/background/starfield/StarField";
 import FirefliesAnimation from "./components/fireflies/Fireflies";
 
 function App() {
