@@ -29,7 +29,7 @@ const NightLayers: React.FC = () => {
         className="night-layer"
         style={{
           backgroundImage: `url(${NightLayer1})`,
-          backgroundPositionX: `${mousePosition.x * 30}px`, // Adjust the movement sensitivity
+          backgroundPositionX: `${mousePosition.x * 40}px`, // Adjust the movement sensitivity
         }}
       />
 
@@ -38,7 +38,7 @@ const NightLayers: React.FC = () => {
         className="night-layer"
         style={{
           backgroundImage: `url(${NightLayer2})`,
-          backgroundPositionX: `${mousePosition.x * 40}px`, // Moves more than Layer 1
+          backgroundPositionX: `${mousePosition.x * 50}px`, // Moves more than Layer 1
         }}
       />
 
@@ -47,7 +47,7 @@ const NightLayers: React.FC = () => {
         className="night-layer"
         style={{
           backgroundImage: `url(${NightLayer3})`,
-          backgroundPositionX: `${mousePosition.x * 50}px`, // Moves more than Layer 2
+          backgroundPositionX: `${mousePosition.x * 60}px`, // Moves more than Layer 2
         }}
       />
 
@@ -56,7 +56,7 @@ const NightLayers: React.FC = () => {
         className="night-layer"
         style={{
           backgroundImage: `url(${NightLayer4})`,
-          backgroundPositionX: `${mousePosition.x * 60}px`, // Moves the most for parallax depth
+          backgroundPositionX: `${mousePosition.x * 70}px`, // Moves the most for parallax depth
         }}
       />
     </>

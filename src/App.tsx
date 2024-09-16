@@ -12,6 +12,9 @@ import {
   SUN_END_TIME,
 } from "./utils/helpers";
 import NightLayers from "./components/background/night-layers/NightLayers";
+import PaperAnimation from "./components/paper-animation/PaperAnimation";
+import StarField from "./components/background/starfield/Starfield";
+import FirefliesAnimation from "./components/fireflies/Fireflies";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate } = useTimeManager();
@@ -24,7 +27,7 @@ function App() {
           zIndex="0"
           overflow="hidden"
           w="100%"
-          h="70%"
+          h="100%"
           bgGradient={gradientColor}
           id="gradient-sky"
         >
@@ -38,8 +41,10 @@ function App() {
           />
           {cloudConfig && <ParallaxClouds cloudsConfig={cloudConfig} />}
 
-          <Text zIndex="999">Hello</Text>
+          <StarField />
         </Box>
+        <FirefliesAnimation />
+        <PaperAnimation />
       </Box>
       <NightLayers />
     </>
