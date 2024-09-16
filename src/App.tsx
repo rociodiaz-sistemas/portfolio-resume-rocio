@@ -3,6 +3,8 @@ import { useTimeManager } from "./store/contexts/TimeManagerContext";
 import ParallaxClouds from "./components/background/parallax-clouds/ParallaxClouds";
 import { Box, Text } from "@chakra-ui/react";
 import MoonAndSunAnimation from "./components/background/moon-and-sun/MoonAndSun";
+import MountainNight from "./assets/mountains/mountains_sunrise/16_mountains1sunrise.png";
+
 import {
   MOON_START_TIME,
   SUN_START_TIME,
@@ -22,28 +24,33 @@ function App() {
         zIndex="0"
         overflow="hidden"
         w="100%"
-        h="50%"
+        h="100%"
         bgGradient={gradientColor}
       >
         <MoonAndSunAnimation
           astralbody={astralBody}
           overNight={astralBody === "moon" ? true : false}
-          startTime={astralBody === "moon" ? MOON_START_TIME : SUN_START_TIME} // Start time (05:00)
-          peakTime={astralBody === "moon" ? MOON_PEAK_TIME : SUN_PEAK_TIME} // Peak time (14:00)
-          endTime={astralBody === "moon" ? MOON_END_TIME : SUN_END_TIME} // End time (18:00)
-          currentTime={timeDate} // Pass current time to MoonAnimation
+          startTime={astralBody === "moon" ? MOON_START_TIME : SUN_START_TIME}
+          peakTime={astralBody === "moon" ? MOON_PEAK_TIME : SUN_PEAK_TIME}
+          endTime={astralBody === "moon" ? MOON_END_TIME : SUN_END_TIME}
+          currentTime={timeDate}
         />
         {cloudConfig && <ParallaxClouds cloudsConfig={cloudConfig} />}
         <Text zIndex="999">Hello</Text>
       </Box>
+
+      {/* The Mountain Background with Seamless Horizontal Tiling */}
       <Box
         pos="absolute"
-        zIndex="0"
-        overflow="hidden"
+        zIndex="1"
         w="100%"
-        h="50%"
-        bgGradient={gradientColor}
-      ></Box>
+        h="100%"
+        backgroundImage={`url(${MountainNight})`}
+        backgroundRepeat="repeat-x"
+        backgroundPosition="bottom center"
+        backgroundSize="50% auto" // Make the image 10% larger while keeping the aspect ratio
+        filter="hue-rotate(160deg) saturate(1.2)" // Rotate green to purple
+      />
     </Box>
   );
 }
