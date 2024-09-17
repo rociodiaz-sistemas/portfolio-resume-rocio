@@ -27,7 +27,7 @@ function App() {
           zIndex="0"
           overflow="hidden"
           w="100%"
-          h="70%"
+          h="65%"
           bgGradient={gradientColor}
           id="gradient-sky"
         >
