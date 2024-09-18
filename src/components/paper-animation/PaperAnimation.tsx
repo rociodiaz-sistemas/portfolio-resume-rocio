@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
-import { Typewriter } from "react-simple-typewriter";
+import { Box, Flex } from "@chakra-ui/react";
+import TooltipIcon from "./TooltipIcon";
 import MailIcon from "../../assets/icons/mail.svg";
 import PhoneIcon from "../../assets/icons/mobile-phone.svg";
 import LinkedInIcon from "../../assets/icons/linkedin.svg";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import Tooltip from "../Tooltip";
-import "./PaperAnimation.css";
+import "./PaperAnimation.css"; // Ensure CSS file contains keyframes
+import AnimatedText from "./TypewriterText";
 
 // Define animation variants for initial paper movement
 const paperVariants = {
-  hidden: { x: "20vw", y: "20vh", rotate: -45 }, // Start from bottom-right corner
-  visible: { x: "-60vw", y: "-70vh", rotate: 0 }, // End at top-left corner
+  hidden: { x: "20vw", y: "20vh", rotate: -45 },
+  visible: { x: "-60vw", y: "-70vh", rotate: 0 },
 };
 
 // Define subtle floating animation
@@ -27,19 +26,11 @@ const floatingAnimation = {
   },
 };
 
-const blinkStyle = {
-  animation: "blink 0.5s step-start infinite",
-};
-
-const PaperAnimation: React.FC = () => {
+const AnimatedPaper: React.FC = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
-  const [isTooltipMailOpen, setIsTooltipMailOpen] = useState(false);
-  const [isTooltipPhoneOpen, setIsTooltipPhoneOpen] = useState(false);
-  const [isTooltipLinkedinOpen, setIsTooltipLinkedinOpen] = useState(false);
 
   return (
     <Box pos="relative" w="100%" h="100vh" overflow="hidden">
-      {/* Animated container for both paper and text */}
       <motion.div
         style={{
           position: "absolute",
@@ -48,9 +39,9 @@ const PaperAnimation: React.FC = () => {
           width: "30%",
           height: "auto",
           transformOrigin: "bottom right",
-          zIndex: 10, // Ensure the paper is above the background
+          zIndex: 10,
         }}
-        variants={paperVariants} // Initial big animation
+        variants={paperVariants}
         initial="hidden"
         animate="visible"
         transition={{ duration: 3, ease: "easeInOut" }}
@@ -59,11 +50,10 @@ const PaperAnimation: React.FC = () => {
           console.log("Initial animation completed");
         }}
       >
-        {/* Paper with text */}
         <motion.div
           id="paper"
           style={{
-            width: "90%",
+            width: "80%",
             backgroundColor: "#d7b594",
             border: "7px double rgb(129, 110, 91)",
             textAlign: "center",
@@ -71,102 +61,30 @@ const PaperAnimation: React.FC = () => {
             paddingBottom: "5px",
             paddingRight: "10px",
           }}
-          animate={floatingAnimation} // Subtle floating effect after initial animation
+          animate={floatingAnimation}
         >
-          <Text
-            fontFamily="heading"
-            fontSize="25px"
-            color="black"
-            fontWeight="bold"
-            textAlign="left"
-          >
-            Hello, I'm...
-          </Text>
-          <Text
-            fontFamily="heading"
-            fontSize="50px"
-            color="black"
-            fontWeight="bold"
-            lineHeight="42px"
-          >
-            Rocio Diaz,
-          </Text>
-          <Text
-            fontFamily="heading"
-            fontSize="25px"
-            color="black"
-            fontWeight="bold"
-            textAlign="center"
-            marginTop="10px"
-          >
-            {animationComplete ? (
-              <Typewriter
-                words={[
-                  "a creative React developer",
-                  "an innovative designer",
-                  "a passionate coder",
-                ]}
-                loop={0} // Set to 0 for no loop, or any number to repeat
-                cursor
-                cursorStyle="_"
-                typeSpeed={70}
-                deleteSpeed={80}
-                delaySpeed={1500}
-              />
-            ) : (
-              "‎‎‎"
-            )}
-          </Text>
+          <AnimatedText animationComplete={animationComplete} />
           <Flex
             direction="row"
             justifyContent="right"
             gap="25px"
             marginTop="10px"
           >
-            <Tooltip content="copied to clipboard!">
-              <CopyToClipboard
-                text=""
-                onCopy={() => setIsTooltipMailOpen(true)}
-              >
-                <div className="icon-container">
-                  <IconButton
-                    aria-label="mail"
-                    id="mail-icon"
-                    width="40px"
-                    height="auto"
-                    _hover={blinkStyle}
-                  >
-                    <img src={MailIcon} />
-                  </IconButton>
-                </div>
-              </CopyToClipboard>
-            </Tooltip>
-            <Tooltip content="copied to clipboard!">
-              <div className="icon-container">
-                <IconButton
-                  aria-label="phone"
-                  id="phone-icon"
-                  width="35px"
-                  height="auto"
-                  _hover={blinkStyle}
-                >
-                  <img src={PhoneIcon} />
-                </IconButton>
-              </div>
-            </Tooltip>
-            <Tooltip content="copied to clipboard!">
-              <div className="icon-container">
-                <IconButton
-                  aria-label="linkedin"
-                  id="linkedin-icon"
-                  width="35px"
-                  height="auto"
-                  _hover={blinkStyle}
-                >
-                  <img src={LinkedInIcon} />
-                </IconButton>
-              </div>
-            </Tooltip>
+            <TooltipIcon
+              ariaLabel="mail"
+              iconSrc={MailIcon}
+              onCopy={() => console.log("Mail copied!")}
+            />
+            <TooltipIcon
+              ariaLabel="phone"
+              iconSrc={PhoneIcon}
+              onCopy={() => console.log("Phone copied!")}
+            />
+            <TooltipIcon
+              ariaLabel="linkedin"
+              iconSrc={LinkedInIcon}
+              onCopy={() => console.log("LinkedIn copied!")}
+            />
           </Flex>
         </motion.div>
       </motion.div>
@@ -174,4 +92,4 @@ const PaperAnimation: React.FC = () => {
   );
 };
 
-export default PaperAnimation;
+export default AnimatedPaper;
