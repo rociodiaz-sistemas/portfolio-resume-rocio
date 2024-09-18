@@ -7,6 +7,7 @@ import PhoneIcon from "../../assets/icons/mobile-phone.svg";
 import LinkedInIcon from "../../assets/icons/linkedin.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Tooltip from "../Tooltip";
+import "./PaperAnimation.css";
 
 // Define animation variants for initial paper movement
 const paperVariants = {
@@ -24,6 +25,10 @@ const floatingAnimation = {
     repeat: Infinity, // Loop indefinitely
     repeatType: "reverse" as const, // Reverse the direction of the animation
   },
+};
+
+const blinkStyle = {
+  animation: "blink 0.5s step-start infinite",
 };
 
 const PaperAnimation: React.FC = () => {
@@ -115,7 +120,7 @@ const PaperAnimation: React.FC = () => {
           <Flex
             direction="row"
             justifyContent="right"
-            gap="10px"
+            gap="25px"
             marginTop="10px"
           >
             <Tooltip content="copied to clipboard!">
@@ -123,32 +128,45 @@ const PaperAnimation: React.FC = () => {
                 text=""
                 onCopy={() => setIsTooltipMailOpen(true)}
               >
-                <IconButton
-                  aria-label="mail"
-                  id="mail-icon"
-                  width="40px"
-                  height="auto"
-                >
-                  <img src={MailIcon} />
-                </IconButton>
+                <div className="icon-container">
+                  <IconButton
+                    aria-label="mail"
+                    id="mail-icon"
+                    width="40px"
+                    height="auto"
+                    _hover={blinkStyle}
+                  >
+                    <img src={MailIcon} />
+                  </IconButton>
+                </div>
               </CopyToClipboard>
             </Tooltip>
-            <IconButton
-              aria-label="phone"
-              id="phone-icon"
-              width="35px"
-              height="auto"
-            >
-              <img src={PhoneIcon} />
-            </IconButton>
-            <IconButton
-              aria-label="linkedin"
-              id="linkedin-icon"
-              width="35px"
-              height="auto"
-            >
-              <img src={LinkedInIcon} />
-            </IconButton>
+            <Tooltip content="copied to clipboard!">
+              <div className="icon-container">
+                <IconButton
+                  aria-label="phone"
+                  id="phone-icon"
+                  width="35px"
+                  height="auto"
+                  _hover={blinkStyle}
+                >
+                  <img src={PhoneIcon} />
+                </IconButton>
+              </div>
+            </Tooltip>
+            <Tooltip content="copied to clipboard!">
+              <div className="icon-container">
+                <IconButton
+                  aria-label="linkedin"
+                  id="linkedin-icon"
+                  width="35px"
+                  height="auto"
+                  _hover={blinkStyle}
+                >
+                  <img src={LinkedInIcon} />
+                </IconButton>
+              </div>
+            </Tooltip>
           </Flex>
         </motion.div>
       </motion.div>

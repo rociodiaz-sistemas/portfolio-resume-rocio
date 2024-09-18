@@ -33,6 +33,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children, imageSrc }) => {
       {isVisible && (
         <div
           style={{
+            fontFamily: "'rainyhearts', sans-serif",
             position: "absolute",
             width: "170px", // Adjust width as needed
             height: "200px", // Adjust height as needed
@@ -59,6 +60,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children, imageSrc }) => {
               padding: "10px",
               borderRadius: "5px",
               textAlign: "center",
+              fontSize: "18px",
             }}
           >
             {content}

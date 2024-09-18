@@ -1,0 +1,55 @@
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-2px); /* Adjust the movement distance */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  position: relative; /* Ensure positioning for the pseudo-element */
+}
+
+.icon-container::before {
+  content: "➤"; /* Use the desired arrow character */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px; /* Adjust size as needed */
+  color: rgb(31, 29, 29); /* Selector color */
+  position: absolute;
+  left: -18px; /* Adjust based on icon size and desired spacing */
+  bottom: 10%;
+  transform: translateY(-30%); /* Center vertically */
+  opacity: 0; /* Hide initially */
+  animation: none; /* No animation initially */
+}
+
+.icon-container:hover::before {
+  opacity: 1; /* Show the selector on hover */
+  animation: moveLeftRight 1s ease-in-out infinite; /* Apply right-to-left animation */
+}
+
+.icon-container img {
+  transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity change */
+}
+
+.icon-container:hover img {
+  animation: blink 30s linear infinite; /* Apply blinking animation on hover */
+}
