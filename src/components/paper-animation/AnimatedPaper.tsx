@@ -71,19 +71,19 @@ const AnimatedPaper: React.FC = () => {
             marginTop="10px"
           >
             <TooltipIcon
+              copyText="rory.d.dev@gmail.com"
               ariaLabel="mail"
               iconSrc={MailIcon}
-              onCopy={() => console.log("Mail copied!")}
             />
             <TooltipIcon
+              copyText="+1 (408) 757 0660"
               ariaLabel="phone"
               iconSrc={PhoneIcon}
-              onCopy={() => console.log("Phone copied!")}
             />
             <TooltipIcon
+              copyText="https://www.linkedin.com/in/rory-diaz/"
               ariaLabel="linkedin"
               iconSrc={LinkedInIcon}
-              onCopy={() => console.log("LinkedIn copied!")}
             />
           </Flex>
         </motion.div>

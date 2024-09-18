@@ -6,17 +6,19 @@ import Tooltip from "../Tooltip";
 interface TooltipIconProps {
   ariaLabel: string;
   iconSrc: string;
-  onCopy: () => void;
+  onCopy?: () => void;
+  copyText: string;
 }
 
 const TooltipIcon: React.FC<TooltipIconProps> = ({
   ariaLabel,
   iconSrc,
   onCopy,
+  copyText,
 }) => (
   <Tooltip content="Copied to clipboard!">
     <div className="icon-container">
-      <CopyToClipboard text="" onCopy={onCopy}>
+      <CopyToClipboard text={copyText} onCopy={onCopy}>
         <IconButton
           aria-label={ariaLabel}
           width="40px"
