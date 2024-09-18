@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { Box, Flex, IconButton, Text, Tooltip } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import { Typewriter } from "react-simple-typewriter";
 import MailIcon from "../../assets/icons/mail.svg";
 import PhoneIcon from "../../assets/icons/mobile-phone.svg";
 import LinkedInIcon from "../../assets/icons/linkedin.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Tooltip from "../Tooltip";
 
 // Define animation variants for initial paper movement
 const paperVariants = {
@@ -57,19 +58,19 @@ const PaperAnimation: React.FC = () => {
         <motion.div
           id="paper"
           style={{
-            width: "100%",
+            width: "90%",
             backgroundColor: "#d7b594",
             border: "7px double rgb(129, 110, 91)",
             textAlign: "center",
-            paddingLeft: "20px",
+            paddingLeft: "15px",
             paddingBottom: "5px",
-            paddingRight: "20px",
+            paddingRight: "10px",
           }}
           animate={floatingAnimation} // Subtle floating effect after initial animation
         >
           <Text
             fontFamily="heading"
-            fontSize="30px"
+            fontSize="25px"
             color="black"
             fontWeight="bold"
             textAlign="left"
@@ -78,7 +79,7 @@ const PaperAnimation: React.FC = () => {
           </Text>
           <Text
             fontFamily="heading"
-            fontSize="70px"
+            fontSize="50px"
             color="black"
             fontWeight="bold"
             lineHeight="42px"
@@ -87,11 +88,11 @@ const PaperAnimation: React.FC = () => {
           </Text>
           <Text
             fontFamily="heading"
-            fontSize="28px"
+            fontSize="25px"
             color="black"
             fontWeight="bold"
             textAlign="center"
-            marginTop="15px"
+            marginTop="10px"
           >
             {animationComplete ? (
               <Typewriter
@@ -117,16 +118,21 @@ const PaperAnimation: React.FC = () => {
             gap="10px"
             marginTop="10px"
           >
-            <CopyToClipboard text="" onCopy={() => setIsTooltipMailOpen(true)}>
-              <IconButton
-                aria-label="mail"
-                id="mail-icon"
-                width="40px"
-                height="auto"
+            <Tooltip content="copied to clipboard!">
+              <CopyToClipboard
+                text=""
+                onCopy={() => setIsTooltipMailOpen(true)}
               >
-                <img src={MailIcon} />
-              </IconButton>
-            </CopyToClipboard>
+                <IconButton
+                  aria-label="mail"
+                  id="mail-icon"
+                  width="40px"
+                  height="auto"
+                >
+                  <img src={MailIcon} />
+                </IconButton>
+              </CopyToClipboard>
+            </Tooltip>
             <IconButton
               aria-label="phone"
               id="phone-icon"
