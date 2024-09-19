@@ -1,0 +1,46 @@
+/* Container for the whole scene */
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+}
+
+/* Animated box should cover full height and be centered */
+.animated-box {
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%; /* Full height */
+  transition: clip-path 1s ease, transform 1s ease;
+  clip-path: inset(0 0 0 0); /* No clipping initially */
+}
+
+/* Apply clipping and movement on collapse */
+.collapsed {
+  clip-path: inset(10% 35% 10% 35%); /* Clip top, bottom, and sides */
+  transform: translateX(20vw); /* Move to the right */
+  transition: clip-path 1s ease, transform 1s ease;
+}
+
+/* Polaroid border effect */
+.polaroid {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  border: 10px solid rgb(250, 24, 24);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  transform: translateX(20vw); /* Align with the moved position */
+  transition: opacity 1s ease;
+  opacity: 0; /* Hidden initially */
+}
+
+/* Show the polaroid border effect when animation completes */
+.show-polaroid {
+  opacity: 1;
+}

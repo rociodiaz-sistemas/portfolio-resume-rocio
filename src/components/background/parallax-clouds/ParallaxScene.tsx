@@ -11,7 +11,7 @@ export interface CloudConfig {
   scale?: number;
 }
 
-export interface ParallaxOptions {
+interface ParallaxOptions {
   clouds: CloudConfig[];
 }
 
