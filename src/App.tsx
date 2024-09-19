@@ -11,13 +11,14 @@ import {
   MOON_END_TIME,
   SUN_END_TIME,
 } from "./utils/helpers";
-import NightLayers from "./components/background/layers/night-layers/NightLayers";
 import PaperAnimation from "./components/paper-animation/AnimatedPaper";
 import StarField from "./components/background/starfield/StarField";
 import FirefliesAnimation from "./components/fireflies/Fireflies";
+import ParallaxLayers from "./components/background/layers/ParallaxLayers";
 
 function App() {
-  const { cloudConfig, gradientColor, astralBody, timeDate } = useTimeManager();
+  const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
+    useTimeManager();
 
   return (
     <>
@@ -46,7 +47,7 @@ function App() {
         <FirefliesAnimation />
         <PaperAnimation />
       </Box>
-      <NightLayers />
+      <ParallaxLayers config={layerConfig} />
     </>
   );
 }

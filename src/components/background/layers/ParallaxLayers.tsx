@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import ParallaxLayer from "./ParallaxLayer"; // Import the ParallaxLayer component
+import { LayerConfig } from "./LayersConfig";
 
 const ParallaxLayers: React.FC<{
-  config: Array<{ backgroundImage: string; sensitivity: number }>;
+  config: LayerConfig[];
 }> = ({ config }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -22,10 +24,10 @@ const ParallaxLayers: React.FC<{
     <>
       {/* Map over the config to generate layers */}
       {config.map((layer, index) => (
-        <ParallaxLayers
+        <ParallaxLayer
           key={index}
-          backgroundImage={layer.backgroundImage}
-          sensitivity={layer.sensitivity}
+          backgroundImage={layer.image}
+          sensitivity={index + 1}
           mousePosition={mousePosition}
         />
       ))}

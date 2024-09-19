@@ -3,6 +3,10 @@ import { gradients, timeRangesExpanded } from "../../utils/helpers";
 import { TimeRangeKey } from "../types";
 import { CLOUD_CONFIGS } from "../../components/background/parallax-clouds/CloudsConfig";
 import { CloudConfig } from "../../components/background/parallax-clouds/ParallaxScene";
+import {
+  LAYER_CONFIGS,
+  LayerConfig,
+} from "../../components/background/layers/LayersConfig";
 
 type TimeManagerContextType = {
   gradientColor: string;
@@ -11,6 +15,7 @@ type TimeManagerContextType = {
   minute: number;
   astralBody: "moon" | "sun";
   timeDate?: Date;
+  layerConfig: LayerConfig[];
 };
 
 const TimeManagerContext = createContext<TimeManagerContextType | undefined>(
@@ -33,6 +38,9 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [timeDate, setTimeDate] = useState<Date | undefined>(undefined);
   const [cloudConfig, setCloudConfig] = useState<CloudConfig[]>(
     CLOUD_CONFIGS["Night"]
+  );
+  const [layerConfig, setLayerConfig] = useState<LayerConfig[]>(
+    LAYER_CONFIGS["Night"]
   );
 
   useEffect(() => {
@@ -60,8 +68,10 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
       if (selectedKey) {
         const gradientColor = gradients[selectedKey as TimeRangeKey];
         const clouds = CLOUD_CONFIGS[selectedKey as TimeRangeKey];
+        const layers = LAYER_CONFIGS[selectedKey as TimeRangeKey];
         setGradientColor(gradientColor);
         setCloudConfig(clouds);
+        setLayerConfig(layers);
       }
     };
 
@@ -73,7 +83,15 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <TimeManagerContext.Provider
-      value={{ gradientColor, cloudConfig, hour, minute, astralBody, timeDate }}
+      value={{
+        gradientColor,
+        cloudConfig,
+        hour,
+        minute,
+        astralBody,
+        timeDate,
+        layerConfig,
+      }}
     >
       {children}
     </TimeManagerContext.Provider>

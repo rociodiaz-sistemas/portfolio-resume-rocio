@@ -12,7 +12,7 @@ const ParallaxLayer: React.FC<{
       className="parallax-layer"
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundPositionX: `${mousePosition.x * sensitivity}px`,
+        backgroundPositionX: `${mousePosition.x * sensitivity * 30}px`, // Adjust sensitivity scaling
       }}
     />
   );

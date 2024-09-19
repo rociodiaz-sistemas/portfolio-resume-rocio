@@ -146,7 +146,7 @@ export const NIGHT_LAYER_CONFIG: LayerConfig[] = [
   },
 ];
 
-export const CLOUD_CONFIGS: { [key in TimeRangeKey]: LayerConfig[] } = {
+export const LAYER_CONFIGS: { [key in TimeRangeKey]: LayerConfig[] } = {
   Dawn: DUSK_LAYER_CONFIG,
   Rising: RISING_LAYER_CONFIG,
   Morning: SUPERDAY_LAYER_CONFIG,
