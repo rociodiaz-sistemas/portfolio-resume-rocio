@@ -15,6 +15,7 @@ import PaperAnimation from "./components/paper-animation/AnimatedPaper";
 import StarField from "./components/background/starfield/StarField";
 import FirefliesAnimation from "./components/fireflies/Fireflies";
 import ParallaxLayers from "./components/background/layers/ParallaxLayers";
+import Butterflies from "./components/butterflies/Butterflies";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
@@ -45,6 +46,7 @@ function App() {
           <StarField />
         </Box>
         <FirefliesAnimation />
+        <Butterflies />
         <PaperAnimation />
         <ParallaxLayers config={layerConfig} />
       </Box>
