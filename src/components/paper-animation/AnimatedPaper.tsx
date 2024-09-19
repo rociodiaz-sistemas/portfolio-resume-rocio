@@ -44,7 +44,7 @@ const AnimatedPaper: React.FC = () => {
   const transformY = Math.min(scrollY, window.innerHeight); // Adjust this if needed
 
   return (
-    <Box pos="relative" w="100%" h="100vh" overflow="hidden">
+    <Box pos="absolute" w="100%" h="100vh" overflow="hidden">
       <motion.div
         style={{
           position: "absolute",

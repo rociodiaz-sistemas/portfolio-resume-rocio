@@ -34,14 +34,20 @@
   width: 30vw; /* Adjust to match the collapsed size */
   height: 80vh; /* Adjust to match the collapsed size */
   border: 10px solid #fff;
-  border-bottom: 80px solid #fff; /* White border for polaroid effect */
+  border-bottom: 12vh solid #fff; /* White border for polaroid effect */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for polaroid effect */
-  transition: opacity 2s ease 1s, transform 1s ease;
+  transition: opacity 2s ease 1s, transform 0s; /* Fade in and no transform transition */
   opacity: 0; /* Hidden initially */
 }
 
-/* Show the polaroid effect when collapsed */
+/* Show the polaroid effect when collapsing */
 .polaroid.show {
   opacity: 1; /* Show polaroid when needed */
   transform: translateX(30vw); /* Align with the moved box */
+}
+
+/* Remove polaroid immediately on expand */
+.polaroid.hide-on-expand {
+  transition: opacity 0.1s ease; /* Quick transition for hiding */
+  opacity: 0; /* Immediately hide on expand */
 }

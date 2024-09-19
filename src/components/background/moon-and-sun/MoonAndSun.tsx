@@ -13,6 +13,7 @@ import fullmoon from "../../../assets/moons/fullmoon.svg";
 import waninggibbous from "../../../assets/moons/waninggibbous.svg";
 import lastquarter from "../../../assets/moons/lastquarter.svg";
 import waningcrescent from "../../../assets/moons/waningcrescent.svg";
+import { MOON_INDEX } from "../../../utils/helpers";
 
 interface Time {
   hours: number;
@@ -204,7 +205,7 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({
           top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
           left: "50%",
           transform: "translate(-50%, -50%)",
-          zIndex: 1, // Ensure moon or sun SVG is on top of the glow
+          zIndex: MOON_INDEX, // Ensure moon or sun SVG is on top of the glow
         }}
       />
     </motion.div>
