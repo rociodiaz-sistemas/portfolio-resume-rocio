@@ -21,39 +21,43 @@ function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
     useTimeManager();
   const [collapsed, setCollapsed] = useState(false);
+  const [showPolaroid, setShowPolaroid] = useState(false);
+
+  const handleCollapseToggle = () => {
+    setCollapsed(!collapsed);
+    setShowPolaroid(!collapsed);
+  };
 
   return (
-    <>
-      <Box className="container">
-        <Box
-          className={`animated-box ${collapsed ? "collapsed" : ""}`}
-          style={{ background: gradientColor }}
-        >
-          <MoonAndSunAnimation
-            astralbody={astralBody}
-            overNight={astralBody === "moon"}
-            startTime={astralBody === "moon" ? MOON_START_TIME : SUN_START_TIME}
-            peakTime={astralBody === "moon" ? MOON_PEAK_TIME : SUN_PEAK_TIME}
-            endTime={astralBody === "moon" ? MOON_END_TIME : SUN_END_TIME}
-            currentTime={timeDate}
-          />
-          {cloudConfig && <ParallaxClouds cloudsConfig={cloudConfig} />}
-          <StarField />
-          <FirefliesAnimation />
-          <PaperAnimation />
-          <ParallaxLayers config={layerConfig} />
-        </Box>
-
-        <Button
-          pos="absolute"
-          top="10px"
-          left="10px"
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          {collapsed ? "Expand" : "Collapse"}
-        </Button>
+    <Box className="container">
+      <Box
+        className={`animated-box ${collapsed ? "collapsed" : ""}`}
+        style={{ background: gradientColor }}
+      >
+        <MoonAndSunAnimation
+          astralbody={astralBody}
+          overNight={astralBody === "moon"}
+          startTime={astralBody === "moon" ? MOON_START_TIME : SUN_START_TIME}
+          peakTime={astralBody === "moon" ? MOON_PEAK_TIME : SUN_PEAK_TIME}
+          endTime={astralBody === "moon" ? MOON_END_TIME : SUN_END_TIME}
+          currentTime={timeDate}
+        />
+        {cloudConfig && <ParallaxClouds cloudsConfig={cloudConfig} />}
+        <StarField />
+        <FirefliesAnimation />
+        <PaperAnimation />
+        <ParallaxLayers config={layerConfig} />
       </Box>
-    </>
+      <Box className={`polaroid ${showPolaroid ? "show" : ""}`} />
+      <Button
+        pos="absolute"
+        top="10px"
+        left="10px"
+        onClick={handleCollapseToggle}
+      >
+        {collapsed ? "Expand" : "Collapse"}
+      </Button>
+    </Box>
   );
 }
 

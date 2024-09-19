@@ -1,4 +1,4 @@
-/* Container for the whole scene */
+/* Ensure the container covers the full viewport height and width */
 .container {
   position: relative;
   width: 100vw;
@@ -9,7 +9,7 @@
   justify-content: center; /* Center the content horizontally */
 }
 
-/* Animated box should cover full height and be centered */
+/* Animated box should cover full height and width */
 .animated-box {
   position: absolute;
   z-index: 0;
@@ -23,24 +23,25 @@
 /* Apply clipping and movement on collapse */
 .collapsed {
   clip-path: inset(10% 35% 10% 35%); /* Clip top, bottom, and sides */
-  transform: translateX(20vw); /* Move to the right */
-  transition: clip-path 1s ease, transform 1s ease;
+  transform: translateX(30vw); /* Move to the right */
 }
 
-/* Polaroid border effect */
+/* Polaroid effect */
 .polaroid {
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-  border: 10px solid rgb(250, 24, 24);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  transform: translateX(20vw); /* Align with the moved position */
-  transition: opacity 1s ease;
+  position: absolute;
+  top: 10%; /* Adjust based on clipping */
+  left: 35%; /* Adjust based on clipping */
+  width: 30vw; /* Adjust to match the collapsed size */
+  height: 80vh; /* Adjust to match the collapsed size */
+  border: 10px solid #fff;
+  border-bottom: 80px solid #fff; /* White border for polaroid effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for polaroid effect */
+  transition: opacity 2s ease 1s, transform 1s ease;
   opacity: 0; /* Hidden initially */
 }
 
-/* Show the polaroid border effect when animation completes */
-.show-polaroid {
-  opacity: 1;
+/* Show the polaroid effect when collapsed */
+.polaroid.show {
+  opacity: 1; /* Show polaroid when needed */
+  transform: translateX(30vw); /* Align with the moved box */
 }

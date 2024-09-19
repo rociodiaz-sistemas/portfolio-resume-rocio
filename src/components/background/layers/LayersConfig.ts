@@ -103,6 +103,10 @@ export const ALMOSTDUSK_LAYER_CONFIG: LayerConfig[] = [
 
 export const DUSK_LAYER_CONFIG: LayerConfig[] = [
   {
+    image: imageMap["superday-6.png"],
+    sensitivity: 0.02,
+  },
+  {
     image: imageMap["superday-1.png"],
     sensitivity: 0.02,
   },
@@ -112,6 +116,10 @@ export const DUSK_LAYER_CONFIG: LayerConfig[] = [
   },
   {
     image: imageMap["superday-3.png"],
+    sensitivity: 0.02,
+  },
+  {
+    image: imageMap["superday-5.png"],
     sensitivity: 0.02,
   },
 ];
