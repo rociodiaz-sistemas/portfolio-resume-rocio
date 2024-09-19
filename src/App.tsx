@@ -48,7 +48,7 @@ function App() {
         <PaperAnimation />
         <ParallaxLayers config={layerConfig} />
       </Box>
-      <Box height="5000px"></Box>
+      {/* <Box height="5000px"></Box> */}
     </>
   );
 }

@@ -41,15 +41,13 @@ const AnimatedPaper: React.FC = () => {
   }, []);
 
   // Apply scroll-based transformation
-  const transformY = scrollY; // Adjust this if needed
+  const transformY = Math.min(scrollY, window.innerHeight); // Adjust this if needed
 
   return (
-    <Box pos="relative" w="100%" h="200vh" overflow="hidden">
-      {" "}
-      {/* Ensure enough height to scroll */}
+    <Box pos="relative" w="100%" h="100vh" overflow="hidden">
       <motion.div
         style={{
-          position: "fixed",
+          position: "absolute",
           bottom: 0,
           right: 0,
           width: "30%",
