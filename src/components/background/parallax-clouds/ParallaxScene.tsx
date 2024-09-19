@@ -1,5 +1,5 @@
-import Phaser from 'phaser';
-import imageMap from './assets/imageMapping';
+import Phaser from "phaser";
+import imageMap from "./assets/imageMapping";
 
 export interface CloudConfig {
   image: string;
@@ -11,7 +11,7 @@ export interface CloudConfig {
   scale?: number;
 }
 
-interface ParallaxOptions {
+export interface ParallaxOptions {
   clouds: CloudConfig[];
 }
 
@@ -24,7 +24,7 @@ class ParallaxScene extends Phaser.Scene {
   private cloudSprites: CloudSprite[] = [];
 
   constructor(private options: ParallaxOptions) {
-    super({ key: 'ParallaxScene' });
+    super({ key: "ParallaxScene" });
   }
 
   preload(): void {
@@ -60,7 +60,7 @@ class ParallaxScene extends Phaser.Scene {
       // Ensure the cloud stays within the screen bounds
       cloud.setPosition(
         Math.min(cloudX, this.cameras.main.width - cloud.displayWidth),
-        Math.min(cloudY, this.cameras.main.height - cloud.displayHeight),
+        Math.min(cloudY, this.cameras.main.height - cloud.displayHeight)
       );
 
       cloud.setAlpha(cloudConfig.alphaRange[0]);

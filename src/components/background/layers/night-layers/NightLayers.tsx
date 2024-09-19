@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import NightLayer1 from "../../../assets/medieval/MBG5 layer3.png";
-import NightLayer2 from "../../../assets/medieval/MBG5 layer4.png";
-import NightLayer3 from "../../../assets/medieval/MBG5 layer5.png";
-import NightLayer4 from "../../../assets/medieval/MBG5 layer6.png";
+
+import NightLayer1 from "../../../../assets/layers/night-layers/MBG5 layer3.png";
+import NightLayer2 from "../../../../assets/layers/night-layers/MBG5 layer4.png";
+import NightLayer3 from "../../../../assets/layers/night-layers/MBG5 layer5.png";
+import NightLayer4 from "../../../../assets/layers/night-layers/MBG5 layer6.png";
 import "./NightLayers.css"; // Your custom CSS file
 
 const NightLayers: React.FC = () => {
