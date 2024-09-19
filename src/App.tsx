@@ -29,7 +29,7 @@ function App() {
           zIndex="0"
           overflow="hidden"
           w="100%"
-          h="65%"
+          h="85%"
           bgGradient={gradientColor}
           id="gradient-sky"
         >
@@ -46,10 +46,11 @@ function App() {
           <StarField />
         </Box>
         <FirefliesAnimation />
-        <Butterflies />
         <PaperAnimation />
         <ParallaxLayers config={layerConfig} />
+        {/* <Butterflies /> */}
       </Box>
+
       {/* <Box overflowX="hidden" height="5000px"></Box> */}
     </>
   );
