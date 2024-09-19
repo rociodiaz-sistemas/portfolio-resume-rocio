@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import TooltipIcon from "./TooltipIcon";
 import MailIcon from "../../assets/icons/mail.svg";
@@ -28,18 +28,36 @@ const floatingAnimation = {
 
 const AnimatedPaper: React.FC = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Update scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Apply scroll-based transformation
+  const transformY = scrollY; // Adjust this if needed
 
   return (
-    <Box pos="relative" w="100%" h="100vh" overflow="hidden">
+    <Box pos="relative" w="100%" h="200vh" overflow="hidden">
+      {" "}
+      {/* Ensure enough height to scroll */}
       <motion.div
         style={{
-          position: "absolute",
+          position: "fixed",
           bottom: 0,
           right: 0,
           width: "30%",
           height: "auto",
           transformOrigin: "bottom right",
           zIndex: 10,
+          transform: `translateY(${transformY}px)`,
+          transition: "transform 0.2s ease-in-out",
         }}
         variants={paperVariants}
         initial="hidden"

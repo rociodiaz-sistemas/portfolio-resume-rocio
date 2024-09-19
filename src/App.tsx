@@ -46,8 +46,9 @@ function App() {
         </Box>
         <FirefliesAnimation />
         <PaperAnimation />
+        <ParallaxLayers config={layerConfig} />
       </Box>
-      <ParallaxLayers config={layerConfig} />
+      <Box height="5000px"></Box>
     </>
   );
 }
