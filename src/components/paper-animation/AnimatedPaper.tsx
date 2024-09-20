@@ -7,12 +7,10 @@ import PhoneIcon from "../../assets/icons/mobile-phone.svg";
 import LinkedInIcon from "../../assets/icons/linkedin.svg";
 import "./PaperAnimation.css"; // Ensure CSS file contains keyframes
 import AnimatedText from "./TypewriterText";
+import { useAnimationContext } from "../../store/contexts/AnimationContext";
 
-interface AnimatedPaperProps {
-  collapsed: boolean; // Accept collapsed state as prop
-}
-
-const AnimatedPaper: React.FC<AnimatedPaperProps> = ({ collapsed }) => {
+const AnimatedPaper: React.FC = () => {
+  const { collapsed, paperWidth, paperHeight } = useAnimationContext();
   const [animationComplete, setAnimationComplete] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -36,8 +34,8 @@ const AnimatedPaper: React.FC<AnimatedPaperProps> = ({ collapsed }) => {
           position: "absolute",
           bottom: 0,
           right: 0,
-          width: collapsed ? "80vw" : "30%", // Change width based on collapsed prop
-          height: collapsed ? "40%" : "auto",
+          width: paperWidth,
+          height: paperHeight,
           transformOrigin: "bottom right",
           zIndex: collapsed ? 0 : 10,
           transform: `translateY(${transformY}px) translateX(${

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sign from "../assets/Paper UI/Paper/Header2.png"; // Default image
+import { MODALS_AND_TOOLTIPS_INDEX } from "../utils/zindexes";
 
 type TooltipProps = {
   content: string;
@@ -48,7 +49,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children, imageSrc }) => {
             left: "50%",
             transform: "translateX(-50%)",
             whiteSpace: "nowrap",
-            zIndex: 1000,
+            zIndex: MODALS_AND_TOOLTIPS_INDEX,
             boxSizing: "border-box",
             display: "flex",
             alignItems: "center",

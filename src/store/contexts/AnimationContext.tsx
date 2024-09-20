@@ -6,6 +6,8 @@ interface AnimationContextProps {
   showPolaroid: boolean;
   hidePolaroid: boolean;
   toggleCollapse: () => void;
+  paperWidth: string;
+  paperHeight: string;
 }
 
 const AnimationContext = createContext<AnimationContextProps | undefined>(
@@ -33,9 +35,20 @@ export const AnimationProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  // Variants and variables for paper animation
+  const paperWidth = collapsed ? "80vw" : "30%";
+  const paperHeight = collapsed ? "40%" : "auto";
+
   return (
     <AnimationContext.Provider
-      value={{ collapsed, showPolaroid, hidePolaroid, toggleCollapse }}
+      value={{
+        collapsed,
+        showPolaroid,
+        hidePolaroid,
+        toggleCollapse,
+        paperWidth,
+        paperHeight,
+      }}
     >
       {children}
     </AnimationContext.Provider>

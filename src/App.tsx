@@ -26,7 +26,7 @@ function App() {
 
   return (
     <Box backgroundColor="#402d85" pos="relative">
-      <PaperAnimation collapsed={collapsed} />
+      <PaperAnimation />
 
       <Box className="container">
         <Box
