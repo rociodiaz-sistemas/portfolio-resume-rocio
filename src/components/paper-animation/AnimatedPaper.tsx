@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import TooltipIcon from "./TooltipIcon";
 import MailIcon from "../../assets/icons/mail.svg";
@@ -10,40 +10,22 @@ import AnimatedText from "./TypewriterText";
 import { useAnimationContext } from "../../store/contexts/AnimationContext";
 
 const AnimatedPaper: React.FC = () => {
-  const { collapsed, paperWidth, paperHeight } = useAnimationContext();
+  const { collapsed, paperWidth, paperHeight, paperPositionX } =
+    useAnimationContext();
   const [animationComplete, setAnimationComplete] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-
-  // Update scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Apply scroll-based transformation
-  const transformY = Math.min(scrollY, window.innerHeight); // Adjust this if needed
 
   return (
     <Box pos="absolute" w="100%" h="100vh" overflow="hidden">
       <motion.div
+        id="paper-container"
         style={{
-          position: "absolute",
-          bottom: 0,
-          right: 0,
           width: paperWidth,
           height: paperHeight,
-          transformOrigin: "bottom right",
           zIndex: collapsed ? 0 : 10,
-          transform: `translateY(${transformY}px) translateX(${
-            collapsed ? "-25%" : "0"
-          })`, // Adjust positioning only when collapsed
-          transition: "transform 0.2s ease-in-out, width 0.3s ease", // Smooth transition for size and position
+          transform: `translateX(${paperPositionX})`,
+          transition: "transform 0.2s ease-in-out, width 0.3s ease",
         }}
-        initial={{ x: "20vw", y: "20vh", rotate: -45 }} // Old initial values
+        initial={{ x: "20vw", y: "20vh", rotate: -45 }}
         animate={
           collapsed
             ? { x: "-10vw", y: "-50vh", rotate: 0 }
@@ -57,16 +39,6 @@ const AnimatedPaper: React.FC = () => {
       >
         <motion.div
           id="paper"
-          style={{
-            height: "100%", // Keep full height of the parent container
-            width: "100%", // Keep full width of the parent container
-            backgroundColor: "#d7b594",
-            border: "7px double rgb(129, 110, 91)",
-            textAlign: "center",
-            paddingLeft: "15px",
-            paddingBottom: "5px",
-            paddingRight: "10px",
-          }}
           animate={
             collapsed
               ? { rotate: [0, 0, 0, 0] }

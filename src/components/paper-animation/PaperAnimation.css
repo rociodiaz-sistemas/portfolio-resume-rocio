@@ -29,3 +29,21 @@
 .icon-container:hover img {
   animation: blink 30s linear infinite; /* Apply blinking animation on hover */
 }
+
+#paper-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform-origin: bottom right;
+}
+
+#paper {
+  height: 100%; /* Keep full height of the parent container */
+  width: 100%; /* Keep full width of the parent container */
+  background-color: #d7b594;
+  border: 7px double rgb(129, 110, 91);
+  text-align: center;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}

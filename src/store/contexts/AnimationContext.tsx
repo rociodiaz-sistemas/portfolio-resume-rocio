@@ -8,6 +8,7 @@ interface AnimationContextProps {
   toggleCollapse: () => void;
   paperWidth: string;
   paperHeight: string;
+  paperPositionX: string;
 }
 
 const AnimationContext = createContext<AnimationContextProps | undefined>(
@@ -38,6 +39,7 @@ export const AnimationProvider: React.FC<{ children: ReactNode }> = ({
   // Variants and variables for paper animation
   const paperWidth = collapsed ? "80vw" : "30%";
   const paperHeight = collapsed ? "40%" : "auto";
+  const paperPositionX = collapsed ? "-25%" : "0";
 
   return (
     <AnimationContext.Provider
@@ -48,6 +50,7 @@ export const AnimationProvider: React.FC<{ children: ReactNode }> = ({
         toggleCollapse,
         paperWidth,
         paperHeight,
+        paperPositionX,
       }}
     >
       {children}

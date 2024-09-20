@@ -30,7 +30,7 @@ function App() {
 
       <Box className="container">
         <Box
-          backgroundColor={gradientColor}
+          bgGradient={gradientColor}
           className={`animated-box ${collapsed ? "collapsed" : ""}`}
         >
           <MoonAndSunAnimation
