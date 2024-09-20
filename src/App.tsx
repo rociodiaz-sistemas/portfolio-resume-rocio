@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Box, Button } from "@chakra-ui/react";
 import { useTimeManager } from "./store/contexts/TimeManagerContext";
 import ParallaxClouds from "./components/background/parallax-clouds/ParallaxClouds";
@@ -17,29 +16,13 @@ import FirefliesAnimation from "./components/fireflies/Fireflies";
 import ParallaxLayers from "./components/background/layers/ParallaxLayers";
 import "./App.css";
 import "./utils/keyframes.css";
+import { useAnimationContext } from "./store/contexts/AnimationContext";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
     useTimeManager();
-  const [collapsed, setCollapsed] = useState(false);
-  const [showPolaroid, setShowPolaroid] = useState(false);
-  const [hidePolaroid, setHidePolaroid] = useState(false);
-
-  const handleCollapseToggle = () => {
-    if (collapsed) {
-      // Start expanding
-      setHidePolaroid(true);
-      setTimeout(() => {
-        setCollapsed(false);
-        setShowPolaroid(false); // Hide polaroid after expansion
-        setHidePolaroid(false); // Reset hide state
-      }, 100); // Quick hide duration to match the transition
-    } else {
-      // Start collapsing
-      setCollapsed(true);
-      setShowPolaroid(true); // Show polaroid when collapsing
-    }
-  };
+  const { collapsed, showPolaroid, hidePolaroid, toggleCollapse } =
+    useAnimationContext();
 
   return (
     <Box backgroundColor="#402d85" pos="relative">
@@ -47,6 +30,7 @@ function App() {
 
       <Box className="container">
         <Box
+          
           className={`animated-box ${collapsed ? "collapsed" : ""}`}
           style={{ background: gradientColor }}
         >
@@ -68,12 +52,7 @@ function App() {
             hidePolaroid ? "hide-on-expand" : ""
           }`}
         />
-        <Button
-          pos="absolute"
-          top="10px"
-          left="10px"
-          onClick={handleCollapseToggle}
-        >
+        <Button pos="absolute" top="10px" left="10px" onClick={toggleCollapse}>
           {collapsed ? "Expand" : "Collapse"}
         </Button>
       </Box>
