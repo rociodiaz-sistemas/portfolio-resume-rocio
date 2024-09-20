@@ -8,25 +8,11 @@ import LinkedInIcon from "../../assets/icons/linkedin.svg";
 import "./PaperAnimation.css"; // Ensure CSS file contains keyframes
 import AnimatedText from "./TypewriterText";
 
-// Define animation variants for initial paper movement
-const paperVariants = {
-  hidden: { x: "20vw", y: "20vh", rotate: -45 },
-  visible: { x: "-60vw", y: "-70vh", rotate: 0 },
-};
+interface AnimatedPaperProps {
+  collapsed: boolean; // Accept collapsed state as prop
+}
 
-// Define subtle floating animation
-const floatingAnimation = {
-  y: [-8, 10, -8], // Moves paper up and down
-  rotate: [0, 1, -1, 0], // Slight rotation effect
-  transition: {
-    duration: 6, // Time for one floating cycle
-    ease: "easeInOut" as const, // Ensure ease matches Framer Motion types
-    repeat: Infinity, // Loop indefinitely
-    repeatType: "reverse" as const, // Reverse the direction of the animation
-  },
-};
-
-const AnimatedPaper: React.FC = () => {
+const AnimatedPaper: React.FC<AnimatedPaperProps> = ({ collapsed }) => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -50,16 +36,21 @@ const AnimatedPaper: React.FC = () => {
           position: "absolute",
           bottom: 0,
           right: 0,
-          width: "30%",
-          height: "auto",
+          width: collapsed ? "80vw" : "30%", // Change width based on collapsed prop
+          height: collapsed ? "40%" : "auto",
           transformOrigin: "bottom right",
-          zIndex: 10,
-          transform: `translateY(${transformY}px)`,
-          transition: "transform 0.2s ease-in-out",
+          zIndex: collapsed ? 0 : 10,
+          transform: `translateY(${transformY}px) translateX(${
+            collapsed ? "-25%" : "0"
+          })`, // Adjust positioning only when collapsed
+          transition: "transform 0.2s ease-in-out, width 0.3s ease", // Smooth transition for size and position
         }}
-        variants={paperVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ x: "20vw", y: "20vh", rotate: -45 }} // Old initial values
+        animate={
+          collapsed
+            ? { x: "-10vw", y: "-50vh", rotate: 0 }
+            : { x: "-60vw", y: "-70vh", rotate: 0 }
+        } // Update based on collapsed state
         transition={{ duration: 3, ease: "easeInOut" }}
         onAnimationComplete={() => {
           setAnimationComplete(true);
@@ -69,7 +60,8 @@ const AnimatedPaper: React.FC = () => {
         <motion.div
           id="paper"
           style={{
-            width: "80%",
+            height: "100%", // Keep full height of the parent container
+            width: "100%", // Keep full width of the parent container
             backgroundColor: "#d7b594",
             border: "7px double rgb(129, 110, 91)",
             textAlign: "center",
@@ -77,31 +69,46 @@ const AnimatedPaper: React.FC = () => {
             paddingBottom: "5px",
             paddingRight: "10px",
           }}
-          animate={floatingAnimation}
+          animate={
+            collapsed
+              ? { rotate: [0, 0, 0, 0] }
+              : {
+                  y: [-8, 10, -8], // Floating animation
+                  rotate: [0, 1, -1, 0],
+                }
+          }
+          transition={{
+            duration: 6,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
         >
-          <AnimatedText animationComplete={animationComplete} />
-          <Flex
-            direction="row"
-            justifyContent="right"
-            gap="25px"
-            marginTop="10px"
-          >
-            <TooltipIcon
-              copyText="rory.d.dev@gmail.com"
-              ariaLabel="mail"
-              iconSrc={MailIcon}
-            />
-            <TooltipIcon
-              copyText="+1 (408) 757 0660"
-              ariaLabel="phone"
-              iconSrc={PhoneIcon}
-            />
-            <TooltipIcon
-              copyText="https://www.linkedin.com/in/rory-diaz/"
-              ariaLabel="linkedin"
-              iconSrc={LinkedInIcon}
-            />
-          </Flex>
+          <div>
+            <AnimatedText animationComplete={animationComplete} />
+            <Flex
+              direction="row"
+              justifyContent="right"
+              gap="25px"
+              marginTop="10px"
+            >
+              <TooltipIcon
+                copyText="rory.d.dev@gmail.com"
+                ariaLabel="mail"
+                iconSrc={MailIcon}
+              />
+              <TooltipIcon
+                copyText="+1 (408) 757 0660"
+                ariaLabel="phone"
+                iconSrc={PhoneIcon}
+              />
+              <TooltipIcon
+                copyText="https://www.linkedin.com/in/rory-diaz/"
+                ariaLabel="linkedin"
+                iconSrc={LinkedInIcon}
+              />
+            </Flex>
+          </div>
         </motion.div>
       </motion.div>
     </Box>

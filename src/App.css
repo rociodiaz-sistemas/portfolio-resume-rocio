@@ -23,18 +23,24 @@
 /* Apply clipping and movement on collapse */
 .collapsed {
   clip-path: inset(10% 35% 10% 35%); /* Clip top, bottom, and sides */
-  transform: translateX(30vw); /* Move to the right */
+  transform: translateX(30vw) rotate(5deg); /* Move to the right */
+  /* Rotate the box */
+  /* shrink the box */
+  width: 70vw;
+  height: 40vh;
+  transition: clip-path 1s ease, transform 1s ease, width 1s ease,
+    height 1s ease;
 }
 
 /* Polaroid effect */
 .polaroid {
   position: absolute;
-  top: 10%; /* Adjust based on clipping */
-  left: 35%; /* Adjust based on clipping */
-  width: 30vw; /* Adjust to match the collapsed size */
-  height: 80vh; /* Adjust to match the collapsed size */
+  top: 33%; /* Adjust based on clipping */
+  left: 39%; /* Adjust based on clipping */
+  width: 22vw; /* Adjust to match the collapsed size */
+  height: 40vh; /* Adjust to match the collapsed size */
   border: 10px solid #fff;
-  border-bottom: 12vh solid #fff; /* White border for polaroid effect */
+  border-bottom: 7vh solid #fff; /* White border for polaroid effect */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for polaroid effect */
   transition: opacity 2s ease 1s, transform 0s; /* Fade in and no transform transition */
   opacity: 0; /* Hidden initially */
@@ -43,7 +49,7 @@
 /* Show the polaroid effect when collapsing */
 .polaroid.show {
   opacity: 1; /* Show polaroid when needed */
-  transform: translateX(30vw); /* Align with the moved box */
+  transform: translateX(30vw) rotate(5deg); /* Align with the moved box */
 }
 
 /* Remove polaroid immediately on expand */
