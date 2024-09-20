@@ -13,24 +13,6 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ animationComplete }) => (
       fontSize="25px"
       color="black"
       fontWeight="bold"
-      textAlign="left"
-    >
-      Hello, I'm...
-    </Text>
-    <Text
-      fontFamily="heading"
-      fontSize="50px"
-      color="black"
-      fontWeight="bold"
-      lineHeight="42px"
-    >
-      Rocio Diaz,
-    </Text>
-    <Text
-      fontFamily="heading"
-      fontSize="25px"
-      color="black"
-      fontWeight="bold"
       textAlign="center"
       marginTop="10px"
     >

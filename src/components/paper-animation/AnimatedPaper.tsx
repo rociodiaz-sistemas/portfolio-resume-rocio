@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import TooltipIcon from "./TooltipIcon";
 import MailIcon from "../../assets/icons/mail.svg";
 import PhoneIcon from "../../assets/icons/mobile-phone.svg";
@@ -8,77 +8,134 @@ import LinkedInIcon from "../../assets/icons/linkedin.svg";
 import "./PaperAnimation.css"; // Ensure CSS file contains keyframes
 import AnimatedText from "./TypewriterText";
 import { useAnimationContext } from "../../store/contexts/AnimationContext";
+import { PAPER_ANIMATION_INDEX } from "../../utils/zindexes";
 
 const AnimatedPaper: React.FC = () => {
-  const { collapsed, paperWidth, paperHeight, paperPositionX } =
-    useAnimationContext();
+  const { collapsed, paperPositionX } = useAnimationContext();
   const [animationComplete, setAnimationComplete] = useState(false);
+  const INITIAL_PAPER_POSITION_ROTATION = { x: "20vw", y: "20vh", rotate: -45 };
+  const PAPER_GLIDE_ANIMATION = { duration: 3, ease: "easeInOut" };
+  const END_PAPER_POSITION_ROTATION = { x: "-60vw", y: "-70vh", rotate: 0 };
+  const PAPER_HOVER_ANIMATION_TRANSITION = {
+    duration: 6,
+    ease: "easeInOut",
+    repeat: Infinity,
+  };
+
+  const PAPER_HOVER_ROTATION = {
+    y: [-8, 10, -8],
+    rotate: [0, 1, -1, 0],
+  };
+
+  const UncollapsedPaperContent = () => {
+    return (
+      <div>
+        <Text
+          fontFamily="heading"
+          fontSize="25px"
+          color="black"
+          fontWeight="bold"
+          textAlign="left"
+        >
+          Hello, I'm...
+        </Text>
+        <Text
+          fontFamily="heading"
+          fontSize="50px"
+          color="black"
+          fontWeight="bold"
+          lineHeight="42px"
+        >
+          Rocio Diaz,
+        </Text>
+        <AnimatedText animationComplete={animationComplete} />
+        <Flex
+          direction="row"
+          justifyContent="right"
+          gap="25px"
+          marginTop="10px"
+        >
+          <TooltipIcon
+            copyText="rory.d.dev@gmail.com"
+            ariaLabel="mail"
+            iconSrc={MailIcon}
+          />
+          <TooltipIcon
+            copyText="+1 (408) 757 0660"
+            ariaLabel="phone"
+            iconSrc={PhoneIcon}
+          />
+          <TooltipIcon
+            copyText="https://www.linkedin.com/in/rory-diaz/"
+            ariaLabel="linkedin"
+            iconSrc={LinkedInIcon}
+          />
+        </Flex>
+      </div>
+    );
+  };
+
+  const CollapsedPaperContent = () => {
+    return (
+      <div>
+        <Flex direction="row" justifyContent="space-between" marginTop="10px">
+          <Text
+            fontFamily="heading"
+            fontSize="50px"
+            color="black"
+            fontWeight="bold"
+            lineHeight="42px"
+          >
+            Rocio Diaz
+          </Text>
+          <Flex direction="row" gap="25px">
+            <TooltipIcon
+              copyText="rory.d.dev@gmail.com"
+              ariaLabel="mail"
+              iconSrc={MailIcon}
+            />
+            <TooltipIcon
+              copyText="+1 (408) 757 0660"
+              ariaLabel="phone"
+              iconSrc={PhoneIcon}
+            />
+            <TooltipIcon
+              copyText="https://www.linkedin.com/in/rory-diaz/"
+              ariaLabel="linkedin"
+              iconSrc={LinkedInIcon}
+            />
+          </Flex>
+        </Flex>
+      </div>
+    );
+  };
 
   return (
     <Box pos="absolute" w="100%" h="100vh" overflow="hidden">
       <motion.div
         id="paper-container"
         style={{
-          width: paperWidth,
-          height: paperHeight,
-          zIndex: collapsed ? 0 : 10,
+          width: "30%",
+          height: "auto",
+          zIndex: PAPER_ANIMATION_INDEX,
           transform: `translateX(${paperPositionX})`,
-          transition: "transform 0.2s ease-in-out, width 0.3s ease",
         }}
-        initial={{ x: "20vw", y: "20vh", rotate: -45 }}
-        animate={
-          collapsed
-            ? { x: "-10vw", y: "-50vh", rotate: 0 }
-            : { x: "-60vw", y: "-70vh", rotate: 0 }
-        } // Update based on collapsed state
-        transition={{ duration: 3, ease: "easeInOut" }}
+        initial={INITIAL_PAPER_POSITION_ROTATION}
+        animate={END_PAPER_POSITION_ROTATION}
+        transition={PAPER_GLIDE_ANIMATION}
         onAnimationComplete={() => {
           setAnimationComplete(true);
-          console.log("Initial animation completed");
         }}
       >
         <motion.div
           id="paper"
-          animate={
-            collapsed
-              ? { rotate: [0, 0, 0, 0] }
-              : {
-                  y: [-8, 10, -8], // Floating animation
-                  rotate: [0, 1, -1, 0],
-                }
-          }
+          animate={PAPER_HOVER_ROTATION}
           transition={{
-            duration: 6,
-            ease: "easeInOut",
-            repeat: Infinity,
+            ...PAPER_HOVER_ANIMATION_TRANSITION,
             repeatType: "reverse",
           }}
         >
-          <div>
-            <AnimatedText animationComplete={animationComplete} />
-            <Flex
-              direction="row"
-              justifyContent="right"
-              gap="25px"
-              marginTop="10px"
-            >
-              <TooltipIcon
-                copyText="rory.d.dev@gmail.com"
-                ariaLabel="mail"
-                iconSrc={MailIcon}
-              />
-              <TooltipIcon
-                copyText="+1 (408) 757 0660"
-                ariaLabel="phone"
-                iconSrc={PhoneIcon}
-              />
-              <TooltipIcon
-                copyText="https://www.linkedin.com/in/rory-diaz/"
-                ariaLabel="linkedin"
-                iconSrc={LinkedInIcon}
-              />
-            </Flex>
-          </div>
+          {collapsed ? <CollapsedPaperContent /> : <UncollapsedPaperContent />}
         </motion.div>
       </motion.div>
     </Box>
