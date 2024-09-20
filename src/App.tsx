@@ -16,6 +16,7 @@ import StarField from "./components/background/starfield/StarField";
 import FirefliesAnimation from "./components/fireflies/Fireflies";
 import ParallaxLayers from "./components/background/layers/ParallaxLayers";
 import "./App.css";
+import "./utils/keyframes.css";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
