@@ -15,7 +15,11 @@ const AnimatedPaper: React.FC = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const INITIAL_PAPER_POSITION_ROTATION = { x: "20vw", y: "20vh", rotate: -45 };
   const PAPER_GLIDE_ANIMATION = { duration: 3, ease: "easeInOut" };
-  const END_PAPER_POSITION_ROTATION = { x: "-60vw", y: "-70vh", rotate: 0 };
+  const END_PAPER_POSITION_ROTATION = {
+    x: "-60vw",
+    y: collapsed ? "-85vh" : "-70vh",
+    rotate: 0,
+  };
   const PAPER_HOVER_ANIMATION_TRANSITION = {
     duration: 6,
     ease: "easeInOut",
