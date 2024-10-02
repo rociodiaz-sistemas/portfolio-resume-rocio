@@ -21,6 +21,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-flip-page": "^1.6.4",
+    "react-pageflip": "^2.0.3",
     "react-redux": "^9.1.2",
     "react-simple-typewriter": "^5.0.1"
   },

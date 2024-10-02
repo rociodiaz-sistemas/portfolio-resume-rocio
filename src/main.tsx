@@ -8,6 +8,7 @@ import store from "./store/store.ts";
 import { TimeManagerProvider } from "./store/contexts/TimeManagerContext.tsx";
 import theme from "../themes/theme.ts";
 import { AnimationProvider } from "./store/contexts/AnimationContext.tsx";
+import Book from "./components/book/Book.jsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <TimeManagerProvider>
           <AnimationProvider>
             <App />
+            <Book />
           </AnimationProvider>
         </TimeManagerProvider>
       </Provider>
