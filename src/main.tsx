@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <TimeManagerProvider>
           <AnimationProvider>
             <App />
-            <Book />
+            {/* <Book /> */}
           </AnimationProvider>
         </TimeManagerProvider>
       </Provider>

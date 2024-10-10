@@ -18,6 +18,7 @@ import "./App.css";
 import "./utils/keyframes.css";
 import { useAnimationContext } from "./store/contexts/AnimationContext";
 import Book from "./components/book/Book";
+import PaperDraggable from "./components/draggable/PaperDraggable";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
@@ -27,8 +28,9 @@ function App() {
 
   return (
     <Box backgroundColor="#402d85" pos="relative">
-      {/* <PaperAnimation /> */}
-      {/* <Box className="container">
+      <PaperAnimation />
+      <PaperDraggable />
+      <Box className="container">
         <Box
           bgGradient={gradientColor}
           className={`animated-box ${collapsed ? "collapsed" : ""}`}
@@ -54,7 +56,7 @@ function App() {
         <Button pos="absolute" top="10px" left="10px" onClick={toggleCollapse}>
           {collapsed ? "Expand" : "Collapse"}
         </Button>
-      </Box> */}
+      </Box>
     </Box>
   );
 }
