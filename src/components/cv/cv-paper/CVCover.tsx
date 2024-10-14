@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-const CVBook: React.FC = () => {
+const CVCover: React.FC = () => {
   return (
     <Box
       width="100px" // Adjust size as needed
@@ -26,4 +26,4 @@ const CVBook: React.FC = () => {
   );
 };
 
-export default CVBook;
+export default CVCover;

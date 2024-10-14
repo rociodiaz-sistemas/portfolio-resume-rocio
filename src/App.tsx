@@ -19,7 +19,8 @@ import "./utils/keyframes.css";
 import { useAnimationContext } from "./store/contexts/AnimationContext";
 import DraggableBox from "./components/draggable/DraggableBox";
 import CVPaper from "./components/cv/cv-paper/CVPaper";
-import CVBook from "./components/cv/cv-paper/CVBook";
+import PixelArtButton from "./components/pixel-button/PixelButton";
+import IntroPage from "./components/cv/cv-content/IntroPage";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
@@ -29,10 +30,13 @@ function App() {
 
   return (
     <Box backgroundColor="#402d85" pos="relative">
+      {/* <DraggableBox width="100%" height="100%" borderRadius="full"> */}
       <PaperAnimation />
+
+      {/* </DraggableBox> */}
       <DraggableBox width="150px" height="150px"  borderRadius="full">
-        <CVBook />
-        {/* <CVPaper><div></div></CVPaper> */}
+        {/* <CVBook /> */}
+        <CVPaper><IntroPage /><Box padding='40px'>test</Box></CVPaper>
       </DraggableBox>
       <Box className="container">
         <Box
@@ -57,9 +61,7 @@ function App() {
             hidePolaroid ? "hide-on-expand" : ""
           }`}
         />
-        <Button pos="absolute" top="10px" left="10px" onClick={toggleCollapse}>
-          {collapsed ? "Expand" : "Collapse"}
-        </Button>
+         <PixelArtButton onClick={toggleCollapse} />
       </Box>
     </Box>
   );

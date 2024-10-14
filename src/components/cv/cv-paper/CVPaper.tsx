@@ -43,7 +43,7 @@ const FoldedCorner: React.FC<{
         left={!isBottomRight ? '0' : undefined}
         width="60px"
         height="60px"
-        bg="gray.400"
+        bg="rgb(129, 110, 91)"
         clipPath={shadowBox}
         boxShadow={isBottomRight ? '-8px -8px 15px rgba(0, 0, 0, 0.3)' : '8px -8px 15px rgba(0, 0, 0, 0.3)'}
         zIndex="1" // Under the fold
@@ -58,7 +58,7 @@ const CVPaper: React.FC<PaperProps> = ({ children, ...props }) => {
   return (
     <Box
       position="relative"
-      width="210mm" // A4 width
+      width="70vw" // A4 width
       height="90vh" // Paper height
       bg="white"
       boxShadow="md"
