@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Image } from "@chakra-ui/react";
 import { useTimeManager } from "./store/contexts/TimeManagerContext";
 import ParallaxClouds from "./components/background/parallax-clouds/ParallaxClouds";
 import MoonAndSunAnimation from "./components/background/moon-and-sun/MoonAndSun";
@@ -17,8 +17,7 @@ import ParallaxLayers from "./components/background/layers/ParallaxLayers";
 import "./App.css";
 import "./utils/keyframes.css";
 import { useAnimationContext } from "./store/contexts/AnimationContext";
-import Book from "./components/book/Book";
-import PaperDraggable from "./components/draggable/PaperDraggable";
+import DraggableBox from "./components/draggable/DraggableBox";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
@@ -29,7 +28,14 @@ function App() {
   return (
     <Box backgroundColor="#402d85" pos="relative">
       <PaperAnimation />
-      <PaperDraggable />
+      <DraggableBox width="150px" height="150px" bg="white" boxShadow="lg" borderRadius="full">
+        <Image
+          src="https://via.placeholder.com/150"
+          alt="Draggable Image"
+          borderRadius="full"
+          objectFit="cover"
+        />
+      </DraggableBox>
       <Box className="container">
         <Box
           bgGradient={gradientColor}

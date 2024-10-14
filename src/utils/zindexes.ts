@@ -5,4 +5,4 @@ export const SPRITE_INDEX = 3;
 export const FIREFLIES_INDEX = 4;
 export const PAPER_ANIMATION_INDEX = 5;
 export const MODALS_AND_TOOLTIPS_INDEX = 999;
-export const DRAGGABLE_PAPER = 5;
+export const DRAGGABLE_BOX_INDEX = 6;
