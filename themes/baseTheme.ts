@@ -35,7 +35,7 @@ const baseTheme = extendTheme({
     grisMorningSub: "rgba(244, 235, 255, 0.64)",
     amarilloPalidoDay: "rgba(254, 246, 172, 0.69)",
     grisPalidoDaySub: "rgba(255, 251, 230, 0.4)",
-    brown: "#3A332D",
+    brown: "#5D4b46",
     rosa: "#F5D6D3",
     amarillo: "#FCE293",
     blackCode: "#3D3D44",

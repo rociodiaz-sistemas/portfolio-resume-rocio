@@ -18,6 +18,8 @@ import "./App.css";
 import "./utils/keyframes.css";
 import { useAnimationContext } from "./store/contexts/AnimationContext";
 import DraggableBox from "./components/draggable/DraggableBox";
+import CVPaper from "./components/cv/cv-paper/CVPaper";
+import CVBook from "./components/cv/cv-paper/CVBook";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
@@ -28,13 +30,9 @@ function App() {
   return (
     <Box backgroundColor="#402d85" pos="relative">
       <PaperAnimation />
-      <DraggableBox width="150px" height="150px" bg="white" boxShadow="lg" borderRadius="full">
-        <Image
-          src="https://via.placeholder.com/150"
-          alt="Draggable Image"
-          borderRadius="full"
-          objectFit="cover"
-        />
+      <DraggableBox width="150px" height="150px"  borderRadius="full">
+        <CVBook />
+        {/* <CVPaper><div></div></CVPaper> */}
       </DraggableBox>
       <Box className="container">
         <Box
