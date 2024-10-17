@@ -18,9 +18,10 @@ import "./App.css";
 import "./utils/keyframes.css";
 import { useAnimationContext } from "./store/contexts/AnimationContext";
 import DraggableBox from "./components/draggable/DraggableBox";
-import CVPaper from "./components/cv/cv-paper/CVPaper";
+import CVPaper from "./components/cv/CVPaper";
 import PixelArtButton from "./components/pixel-button/PixelButton";
 import IntroPage from "./components/cv/cv-content/IntroPage";
+import CVBook from "./components/cv/CVBook";
 
 function App() {
   const { cloudConfig, gradientColor, astralBody, timeDate, layerConfig } =
@@ -36,7 +37,7 @@ function App() {
       {/* </DraggableBox> */}
       <DraggableBox width="150px" height="150px"  borderRadius="full">
         {/* <CVBook /> */}
-        <CVPaper><IntroPage /><Box padding='40px'>test</Box></CVPaper>
+        <CVBook />
       </DraggableBox>
       <Box className="container">
         <Box

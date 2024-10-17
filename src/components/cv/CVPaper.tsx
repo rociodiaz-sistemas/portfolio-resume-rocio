@@ -1,59 +1,70 @@
 import React from 'react';
 import { Box, BoxProps } from '@chakra-ui/react';
+import { useCVBook } from '../../store/contexts/CVBookContext';
+import { CV_BOOK_FOLD_INDEX, CV_BOOK_FOLD_SHADOW_INDEX } from '../../utils/zindexes';
 
 interface PaperProps extends BoxProps {
   children: React.ReactNode;
 }
 
+
 const FoldedCorner: React.FC<{
   position: 'bottom-right' | 'bottom-left';
-}> = ({ position }) => {
+  onFoldClick?: () => void;
+}> = ({ position, onFoldClick }) => {
   const isBottomRight = position === 'bottom-right';
+  // Adjusted clip paths for the folded effect
   const clipPath = isBottomRight
-    ? 'polygon(0px 0px, 101.67% 0.00%, 0px 100%)' // Bottom right
-    : 'polygon(100% 0px, 2px 3.33%, 100% 100%)'; // Bottom left
-  
-  const shadowBox = isBottomRight
-    ? 'polygon(60px 2px, 100% 100%, 0px 100%)' // Bottom right shadow
-    : 'polygon(0 0, 0 100%, 60px 100%)'; // Bottom left shadow
+    ? 'polygon(0px 0px, 88.33% 1.67%, 0px 100%)' // Bottom right fold
+    : 'polygon(100% 0px, 7px 0%, 100% 100%)'; // Bottom left fold
+
+  // Adjusted shadow clip paths
+  const shadowClipPath = isBottomRight
+    ? 'polygon(53px 0px, 88.34% 100%, 0px 100%)' // Bottom right shadow
+    : 'polygon(7px 0px, 7px 102.66%, 60px 100%)'; // Bottom left shadow
 
   return (
     <>
       {/* Folded corner effect */}
       <Box
+        onClick={onFoldClick}
         position="absolute"
         bottom="0"
         right={isBottomRight ? '0' : undefined}
         left={!isBottomRight ? '0' : undefined}
         width="60px"
         height="60px"
-        bg="#bfbaba57" // Color for the "backside" of the fold
+        bg="#d8d6d6" // Color for the "backside" of the fold
         clipPath={clipPath}
         boxShadow={isBottomRight ? '-4px -4px 6px rgba(0, 0, 0, 0.25)' : '4px -4px 6px rgba(0, 0, 0, 0.25)'}
-        zIndex="2" // Ensure this is above the paper
+        zIndex={CV_BOOK_FOLD_INDEX} // Ensure this is above the shadow
         borderLeft={isBottomRight ? '3px solid #b2b6b9' : undefined}
         borderRight={!isBottomRight ? '3px solid #b2b6b9' : undefined}
       />
+    
 
       {/* The shadow from the folded paper */}
       <Box
+        onClick={onFoldClick}
         position="absolute"
         bottom="0"
         right={isBottomRight ? '0' : undefined}
         left={!isBottomRight ? '0' : undefined}
         width="60px"
         height="60px"
-        bg="rgb(129, 110, 91)"
-        clipPath={shadowBox}
+        bg="rgb(191, 191, 191)" // Shadow color
+        clipPath={shadowClipPath}
         boxShadow={isBottomRight ? '-8px -8px 15px rgba(0, 0, 0, 0.3)' : '8px -8px 15px rgba(0, 0, 0, 0.3)'}
-        zIndex="1" // Under the fold
+        zIndex={CV_BOOK_FOLD_SHADOW_INDEX} // Under the fold
       />
+
     </>
   );
 };
 
 const CVPaper: React.FC<PaperProps> = ({ children, ...props }) => {
   const [leftContent, rightContent] = React.Children.toArray(children) as React.ReactNode[];
+  const { isFirstSet, isLastSet, nextSet, prevSet } = useCVBook();
 
   return (
     <Box
@@ -74,6 +85,7 @@ const CVPaper: React.FC<PaperProps> = ({ children, ...props }) => {
     >
       {/* Left Half */}
       <Box
+        padding="30px"
         flex="1" // Takes up half of the space
         borderRight="2px solid #a89d91"
         position="relative" // Make this position relative for shadow positioning
@@ -89,17 +101,18 @@ const CVPaper: React.FC<PaperProps> = ({ children, ...props }) => {
           bottom="0"
           bg="rgba(0, 0, 0, 0.1)" // Light shadow effect
           borderLeftWidth="8px"
-          borderColor="rgba(129, 110, 91, 0.6)" // Slightly darker for the shadow
+          borderColor="rgb(191, 191, 191)" // Slightly darker for the shadow
           borderStyle="solid"
           zIndex="0" // Behind the content
           pointerEvents="none" // Allows clicking through to the content
         />
         {leftContent}
-        <FoldedCorner position="bottom-left" />
+        {!isFirstSet && (<FoldedCorner onFoldClick={prevSet} position="bottom-left" />)}
       </Box>
 
       {/* Right Half */}
       <Box
+        padding="30px"
         borderLeft="1px solid #a89d91"
         flex="1" // Takes up half of the space
         position="relative" // Make this position relative for shadow positioning
@@ -114,13 +127,13 @@ const CVPaper: React.FC<PaperProps> = ({ children, ...props }) => {
           bottom="0"
           bg="rgba(0, 0, 0, 0.1)" // Light shadow effect
           borderRightWidth="8px"
-          borderColor="rgba(129, 110, 91, 0.6)" // Slightly darker for the shadow
+          borderColor="rgb(191, 191, 191)" // Slightly darker for the shadow
           borderStyle="solid"
           zIndex="0" // Behind the content
           pointerEvents="none" // Allows clicking through to the content
         />
         {rightContent}
-        <FoldedCorner position="bottom-right" />
+        {!isLastSet && <FoldedCorner onFoldClick={nextSet} position="bottom-right" />}
       </Box>
     </Box>
   );
