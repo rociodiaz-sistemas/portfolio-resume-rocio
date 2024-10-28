@@ -1,8 +1,8 @@
 /* Ensure the container covers the full viewport height and width */
 .container {
   position: relative;
-  width: 100vw;
-  height: 100vh; /* Full viewport height */
+  width: 30vw;
+  height: 70vh; /* Full viewport height */
   overflow: hidden;
   display: flex;
   align-items: center; /* Center the content vertically */
